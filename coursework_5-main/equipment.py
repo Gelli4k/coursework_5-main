@@ -36,7 +36,7 @@ class EquipmentData:
 
 class Equipment:
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.equipment = self._get_equipment_data()
 
     def get_weapon(self, weapon_name) -> Weapon:
@@ -49,7 +49,7 @@ class Equipment:
         return [weapon.name for weapon in self.equipment.weapons]
 
     def get_armors_names(self) -> list:
-        return [armor.name for armor in self.equipment.armors]
+        return [armor.name for armor in [self.equipment.armors]]
 
     @staticmethod
     def _get_equipment_data() -> EquipmentData:

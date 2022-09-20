@@ -9,14 +9,10 @@ from equipment import Weapon, Armor
 
 
 class BaseUnit(ABC):
-    """
-    Базовый класс юнита
-    """
+    """ Базовый класс юнита """
 
     def __init__(self, name: str, unit_class: UnitClass):
-        """
-        При инициализации класса Unit используем свойства класса UnitClass
-        """
+        """ При инициализации класса Unit используем свойства класса UnitClass """
         self.name = name
         self.unit_class = unit_class
         self.hp = unit_class.max_health
@@ -61,9 +57,7 @@ class BaseUnit(ABC):
         return 0
 
     def hit(self, target: BaseUnit) -> str:
-        """
-        этот метод не будет переопределен ниже
-        """
+        """ этот метод не будет переопределен ниже """
         if self.stamina >= self.weapon.stamina_per_hit:
             damage = self._count_damage(target)
             if damage > 0:
@@ -83,13 +77,13 @@ class BaseUnit(ABC):
         и уже эта функция вернем нам строку которая характеризует выполнение умения
         """
         if self._is_skill_used:
-            return "Навык использован"
+            return "Навык уже был использован"
         else:
             if self.unit_class.skill._is_stamina_enough:
                 self._is_skill_used = True
             return self.unit_class.skill.use(user=self, target=target)
 
-    def add_stamina(self, stamina_point):
+    def add_stamina(self, stamina_point) -> float:
         stamina_growth = stamina_point * self.unit_class.stamina
         if self.stamina + stamina_growth > self.unit_class.max_stamina:
             self.stamina = self.unit_class.max_stamina

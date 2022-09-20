@@ -17,12 +17,12 @@ class Arena(metaclass=BaseSingleton):
     game_is_running = False
     battle_result = "Бой не завершен!"
 
-    def start_game(self, player: BaseUnit, enemy: BaseUnit):
+    def start_game(self, player: BaseUnit, enemy: BaseUnit) -> None:
         self.player = player
         self.enemy = enemy
         self.game_is_running = True
 
-    def _check_players_hp(self):
+    def _check_players_hp(self) -> str:
         if self.player.hp <= 0 and self.enemy.hp <= 0:
             self.battle_result = "Ничья!"
             return self._end_game()
@@ -33,28 +33,28 @@ class Arena(metaclass=BaseSingleton):
             self.battle_result = "Вы проиграли"
             return self._end_game()
 
-    def _stamina_regeneration(self):
+    def _stamina_regeneration(self) -> int:
         self.player.add_stamina(self.STAMINA_PER_ROUND)
         self.enemy.add_stamina(self.STAMINA_PER_ROUND)
 
-    def next_turn(self):
+    def next_turn(self) -> str:
         result = self._check_players_hp()
         if result:
             return result
         self._stamina_regeneration()
         return self.enemy.hit(self.player)
 
-    def _end_game(self):
+    def _end_game(self) -> str:
         self._instances = {}
         self.game_is_running = False
         return self.battle_result
 
-    def player_hit(self):
+    def player_hit(self) -> str:
         result = self.player.hit(self.enemy)
         self.next_turn()
         return result
 
-    def player_use_skill(self):
+    def player_use_skill(self) -> str:
         result = self.player.use_skill(self.enemy)
         self.next_turn()
         return result
