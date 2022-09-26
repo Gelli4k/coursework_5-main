@@ -12,7 +12,7 @@ class UnitClass:
     skill: Skill
 
 
-WarriorClass = UnitClass( # TODO Инициализируем экземпляр класса UnitClass и присваиваем ему необходимые значения аттрибутов
+WarriorClass = UnitClass(
     name="Воин",
     max_health=60,
     max_stamina=30,
@@ -23,7 +23,7 @@ WarriorClass = UnitClass( # TODO Инициализируем экземпляр
 )
 
 
-ThiefClass = UnitClass( # TODO Инициализируем экземпляр класса UnitClass и присваиваем ему необходимые значения аттрибутов
+ThiefClass = UnitClass(
     name="Вор",
     max_health=50,
     max_stamina=25,
