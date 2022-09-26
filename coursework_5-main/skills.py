@@ -41,8 +41,10 @@ class Skill(SkilLABC):
         return self.user.stamina > self.stamina
 
     def use(self, user: BaseUnit, target: BaseUnit) -> str:
-        """ Проверка, достаточно ли выносливости у игрока для применения умения."""
-        """ Для вызова скилла везде используем просто use """
+        """ 
+        Проверка, достаточно ли выносливости у игрока для применения умения.
+        Для вызова скилла везде используем просто use
+        """
         self.user = user
         self.target = target
         if self._is_stamina_enough:
