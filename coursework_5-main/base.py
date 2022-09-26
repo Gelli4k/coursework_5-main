@@ -33,7 +33,7 @@ class Arena(metaclass=BaseSingleton):
             self.battle_result = "Вы проиграли"
             return self._end_game()
 
-    def _stamina_regeneration(self) -> int:
+    def _stamina_regeneration(self) -> None:
         self.player.add_stamina(self.STAMINA_PER_ROUND)
         self.enemy.add_stamina(self.STAMINA_PER_ROUND)
 
